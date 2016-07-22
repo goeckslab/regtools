@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<tool_dependency>
+    <package name="regtools" version="0.3.0">
+        <install version="1.0">
+            <actions>
+                <action type="shell_command">git clone --recursive https://github.com/griffithlab/regtools.git</action>
+                <action type="make_directory">build</action>
+                <action type="change_directory">build</action>
+
+                <action type="set_environment_for_install">
+                    <repository name="package_cmake_3_2_3"
+                                owner="iuc" prior_installation_required="True">
+                        <package name="cmake" version="3.2.3"/>
+                    </repository>
+                </action>
+                <action type="shell_command">cmake ..</action>
+
+                <action type="shell_command">make</action>
+                <action type="move_file">
+                    <source>regtools</source>
+                    <destination>$INSTALL_DIR</destination>
+                </action>
+                <action type="set_environment">
+                    <environment_variable name="PATH" action="prepend_to">$INSTALL_DIR</environment_variable>
+                </action>
+            </actions>
+        </install>
+    </package>
+</tool_dependency>

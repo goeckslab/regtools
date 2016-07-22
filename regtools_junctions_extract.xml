@@ -14,7 +14,7 @@
         ln -sf '${input1}' infile.bam &&
         ln -sf '${input1.metadata.bam_index}' infile.bam.bai &&
 
-        $__tool_directory__/regtools junctions extract
+        regtools junctions extract
           -i $min_intron_length
           -I $max_intron_length
           -o $output1
