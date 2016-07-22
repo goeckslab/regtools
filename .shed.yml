@@ -3,4 +3,4 @@ description: Wrapper for the regtools junctions extract program
 homepage_url: 'https://github.com/griffithlab/regtools'
 long_description: Report splice junctions in RNA-Seq BAM file
 name: regtools_junctions_extract
-owner: gonrampdeveloper
+owner: rmarenco
