@@ -1,6 +1,6 @@
 categories: [RNA]
 description: Wrapper for the regtools junctions extract program
-homepage_url: 'https://github.com/griffithlab/regtools'
+homepage_url: 'https://github.com/Yating-L/regtools'
 long_description: Report splice junctions in RNA-Seq BAM file
 name: regtools_junctions_extract
-owner: rmarenco
+owner: yating-l

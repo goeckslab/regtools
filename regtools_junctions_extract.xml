@@ -25,7 +25,9 @@
                 -r "$advanced_options.region"
             #end if
           #end if
-          infile.bam
+          infile.bam  &&
+        
+        python $__tool_directory__/validator.py $output1 $fixed_output
     ]]></command>
     <inputs>
         <param name="input1" type="data" format="bam" />
@@ -57,13 +59,15 @@
         </conditional>
     </inputs>
     <outputs>
-        <data name="output1" format="bed" />
+        <data name="output1" format="bed" label="${tool.name} on ${on_string}: original output"/>
+        <data name="fixed_output" format="bed" label="${tool.name} on ${on_string}: fixed_output for HAC workflow"/>
     </outputs>
     <tests>
         <test>
             <!-- Test with default parameters -->
             <param name="input1" value="Dbia3_adult_males_shallow.bam" />
             <output name="output1" file="Dbia3_adult_males_junctions_i20_I500000.bed" />
+            <output name="fixed_output" file="Dbia3_adult_males_junctions_i20_I500000_fixed.bed" />
         </test>
         <test>
             <!-- Test with custom intron length thresholds -->
@@ -71,6 +75,7 @@
             <param name="max_intron_length" value="50000" />
             <param name="input1" value="Dbia3_adult_males_shallow.bam" />
             <output name="output1" file="Dbia3_adult_males_junctions_i50_I50000.bed" />
+            <output name="fixed_output" file="Dbia3_adult_males_junctions_i50_I50000_fixed.bed" />
         </test>
         <test>
             <!-- Test with advanced option and custom anchor size -->
@@ -79,15 +84,23 @@
             <param name="input1" value="Dbia3_adult_males_shallow.bam" />
             <output name="output1"
                 file="Dbia3_adult_males_junctions_i20_I500000_a10.bed" />
+            <output name="fixed_output"
+                file="Dbia3_adult_males_junctions_i20_I500000_a10_fixed.bed" />
         </test>
         <test>
             <!-- Test with advanced option and selected region -->
             <param name="advanced_options_selector" value="on" />
             <param name="region" value="contig2:10000-30000" />
             <param name="input1" value="Dbia3_adult_males_shallow.bam" />
-            <output name="output1"
-                file="Dbia3_adult_males_junctions_i20_I500000_rcontig2_10-30kb.bed" />
+            <output name="output1" file="Dbia3_adult_males_junctions_i20_I500000_rcontig2_10-30kb.bed" />
+            <output name="fixed_output" file="Dbia3_adult_males_junctions_i20_I500000_rcontig2_10-30kb_fixed.bed"/>
         </test>
+        <test>
+            <!--Test with output having invalid strand -->
+            <param name="input1" value="Dbia3.bam" />
+            <output name="output1" file="Dbia3_i20_I500000.bed" />
+            <output name="fixed_output" file="Dbia3_i20_I500000_fixed.bed" />  
+        </test>   
     </tests>
     <help><![CDATA[
 **What it does**
