@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <tool_dependency>
-    <package name="regtools" version="0.3.0">
+    <package name="regtools" version="0.5.0">
         <install version="1.0">
             <actions>
-                <action type="shell_command">git clone --recursive https://github.com/griffithlab/regtools.git</action>
+                <action type="shell_command">git clone http://github.com/griffithlab/regtools --recursive -b 0.5.0</action>
                 <action type="make_directory">build</action>
                 <action type="change_directory">build</action>
 
